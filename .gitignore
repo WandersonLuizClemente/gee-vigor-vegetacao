@@ -1,0 +1,7 @@
+# Dados reais da fazenda: NUNCA versionar
+data/talhoes_privado.geojson
+data/*.kml
+outputs/privado/
+.ipynb_checkpoints/
+__pycache__/
+.venv/
