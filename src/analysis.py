@@ -191,9 +191,10 @@ def fig_sensibilidade(sens, destino=None):
     fig, ax = plt.subplots(figsize=(7.5, 4))
     ax.barh(s.cultura, s.r, color=[COR.get(c, "#888") for c in s.cultura], height=.6)
     for y, (r, L) in enumerate(zip(s.r, s.lag_meses)):
-        ax.text(r + (.01 if r >= 0 else -.01), y, f"{r:+.2f}  (defasagem {L} m)",
-                va="center", ha="left" if r >= 0 else "right", fontsize=9, color=TXT2)
+        ax.text(max(r, 0) + .01, y, f"{r:+.2f}  (defasagem {L} m)",
+                va="center", ha="left", fontsize=9, color=TXT2)
     ax.set_xlabel("correlação NDVI × chuva (z-scores)"); ax.grid(axis="y", visible=False)
+    ax.set_xlim(min(-.1, s.r.min() - .02), max(.6, s.r.max() + .2))
     ax.set_title("Qual cultura responde mais à chuva?", loc="left", fontweight="bold")
     ax.axvline(0, color=TXT2, lw=.8)
     fig.tight_layout()
